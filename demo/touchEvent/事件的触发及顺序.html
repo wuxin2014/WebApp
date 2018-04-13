@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#container {
+				width: 100%;
+				height: 100%;
+				border: 1px solid rosybrown;
+			}
+			
+			.one {
+				width: 100px;
+				height: 100px;
+				background-color: antiquewhite;
+			}
+			
+			.two {
+				width: 200px;
+				height: 200px;
+				background-color: salmon;
+			}
+		</style>
+		<script>
+			/**
+			 * https://blog.csdn.net/u012468376/article/details/72808761
+			 * http://www.cnblogs.com/imwtr/category/626448.html
+			 * https://blog.csdn.net/zhy13087344578/article/details/79078475
+			 * 
+			 * touchstart: //手指放到屏幕上时触发
+			 * touchmove: //手指在屏幕上滑动式触发
+			 * touchend: //手指离开屏幕时触发
+			 * touchcancel: //系统取消touch事件的时候触发，这个好像比较少用
+			 * 
+			 * event对象
+			 * touches: //当前屏幕上所有手指的列表
+			 * targetTouches: //当前dom元素上手指的列表，尽量使用这个代替touches
+			 * changedTouches: //涉及当前事件的手指的列表，尽量使用这个代替touches
+			 * 
+			 * touch对象里包含着触摸信息
+			 * pageX //相对于页面的 X 坐标 
+			 * pageY //相对于页面的 Y 坐标
+			 * clientX //相对于视区的 X 坐标
+			 * clientY //相对于视区的 Y 坐标
+			 * screenX //相对于屏幕的 X 坐标
+			 * screenY //相对于屏幕的 Y 坐标
+			 * identifier // 当前触摸点的惟一编号
+			 * target //手指所触摸的 DOM 元素
+			 * 
+			 * 注意：
+			 * 手指在滑动整个屏幕时，会影响浏览器的行为，比如滚动和缩放。所以在调用touch事件时，要注意禁止缩放和滚动。
+			 * 
+			 * 1.禁止缩放
+			 * 通过meta元标签来设置。
+			 * 2.禁止滚动
+			 * preventDefault是阻止默认行为，touch事件的默认行为就是滚动。
+			 * event.preventDefault();
+			 * var supportTouch = "createTouch" in document //判断是否支持触摸事件
+			 * 
+			 */
+			window.onload = function() {
+				var oWrap = document.getElementById('container');
+				var one = document.querySelector('.one');
+				var two = document.querySelector('.two');
+				
+				addEvent(one, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap', false);
+			
+				addEvent(two, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap', true);
+			}
+			
+			function addEvent(elem, type, showAll) {
+				var type = type.split(' ');
+				alert(type.length);
+				type.forEach(function(item) {
+					elem.addEventListener(item, function(ev) {
+						console.log(showAll ? ev : ev.type);
+					});
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<div class="one">
+				
+			</div>
+			<div class="two"></div>
+		</div>
+	</body>
+</html>

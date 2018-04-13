@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>事件穿透</title>
+		<style>
+			#div {
+				width: 300px;
+				height: 200px;
+				background: darkcyan;
+			}
+			
+			#div1 {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				top: 100px;
+				left: 20px;
+				background: red;
+			}
+		</style>
+		<script>
+			// https://blog.csdn.net/zhy13087344578/article/details/79078475
+			/**
+			 * 事件穿透 
+			 * 当在使用mousedown之后，将当前节点隐藏，而当前又绑定了click事件，
+			 * 这时候，该节点有不存了，所以会触发该节点之下的节点
+			 * 
+			 * 结果
+			 * 原理： 
+			 * 即在mousedown之后，将div1隐藏，因为div1已经不见了，所以div1的mouseup、click事件并没有触发；
+			 * 所以，mouseup事件被div接收到了，所以触发了mouseup事件，那么div1的click事件倍谁接收了呢？按道理来讲，也是被div接收了，
+			 * 但是，因为，在div上并没有触发mousedown事件，只触发了mouseup事件，所以，并没有触发clcik事件 。
+			 */
+			window.onload = function() {
+				var div = document.getElementById('div');
+				div.addEventListener('click', function(event) {
+					console.log('div-------click----------------------------', event);
+				});
+				div.addEventListener('mousedown', function(event) {
+					console.log('div------mousdown----------------------', event);
+				});
+				div.addEventListener('mouseup', function(event) {
+					console.log('div--------mouseup---------------------------', event);
+				});
+
+				var div1 = document.getElementById('div1');
+				div1.addEventListener('mousedown', function(event) {
+					console.log('div1******mousedown******', event);
+					div1.style = 'display:none;';
+				});
+				div1.addEventListener('mouseup', function(event) {
+					console.log('div1******mouseup******', event);
+				});
+				div1.addEventListener('click', function(event) {
+					console.log('div1******click******', event);
+				});
+
+				div1.addEventListener('touchstart', function(event) {
+					console.log('div1******touchstart******', event.timeStamp);
+				})
+				div1.addEventListener('touchend', function(event) {
+					console.log('div1******touchend******', event.timeStamp);
+					div1.style = 'display:none;';
+					// event.preventDefault();
+				})
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="div">
+			div
+		</div>
+
+		<div id="div1">
+			div1
+		</div>
+	</body>
+
+</html>

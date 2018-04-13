@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" >
+		<title>移动事件学习</title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				color: white;
+				line-height: 100px;
+				text-align: center;
+			}
+			
+			.box1 {
+				background-color: orange;
+			}
+			
+			.box2 {
+				background-color: navajowhite;
+			}
+			
+			.box3 {
+				background-color: darkslateblue;
+			}
+			
+			span {
+				background-color: skyblue;
+			}
+		</style>
+
+		<script src="touch.js"></script>
+		<script>
+			window.onload = function() {
+				var aDiv = document.getElementsByTagName("div");
+				
+				touchEvent.tap(aDiv[0], function() {
+					alert("单击事件");
+				});
+				
+				touchEvent.doubleTap(aDiv[1], function() {
+					alert("双击事件");
+				});
+				
+				touchEvent.longTap(aDiv[2], function() {
+					alert("长按事件");
+				});
+				
+				touchEvent.swipe(document, function() {
+					alert("滑屏了");
+				});
+				
+				touchEvent.swipeUp(document, function() {
+					alert("向上滑动");
+				});
+				
+				touchEvent.swipeDown(document, function() {
+					alert("向下滑动");
+				});
+				
+				touchEvent.swipeLeft(document, function() {
+					alert("向左滑动");
+				});
+				
+				touchEvent.swipeRight(document, function() {
+					alert("向右滑动");
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="box1">单次触摸我</div>
+		<div class="box2">两次触摸</div>
+		<div class="box3">长按我</div>
+		<span>试一试在屏幕上任意区域滑动</span>
+	</body>
+
+</html>
