@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="assets/css/reset.css" />
+		<link rel="stylesheet" href="assets/css/index.css" />
+		
+		<script src="assets/js/index.js"></script>
+		<script>
+			window.onload = function() {
+				var oSwipe = document.querySelector('#swipe_wrap');
+				var oUl = oSwipe.querySelector('.swipe');
+				var aLi = oUl.getElementsByTagName('li');
+				var singleWidth = aLi[0].offsetWidth;
+				oUl.style.width = aLi.length * singleWidth + 'px';
+				
+				var timer = null;
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<header id="header">
+				魅力女人
+			</header>
+			<div id="swipe_wrap">
+				<ul class="swipe">
+					<li>
+						<img src="assets/img/swipe1.jpg"  alt="1"/>
+					</li>
+					<li>
+						<img src="assets/img/swipe1.jpg"  alt="1"/>
+					</li>
+					<li>
+						<img src="assets/img/swipe1.jpg"  alt="1"/>
+					</li>
+				</ul>
+			</div>
+			
+			<div>
+				<ul id="list">
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="content_des">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="content_des">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="content_des">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="content_des">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="content_des">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
