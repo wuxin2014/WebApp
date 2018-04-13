@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title>移动端滑动删除之两层布局</title>
+		<style>
+			body, ul{
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				list-style: none;
+			}
+			
+			#list {
+				width: 100%;
+				height: 100%;
+			}
+			
+			#list li {
+				width: 100%;
+				height: 60px;
+				position: relative;
+				border-bottom: 1px solid white;
+			}
+			
+			#list .text, #list .delete {
+				width: 100%;
+				height: 60px;
+				line-height: 60px;
+				position: absolute ;
+				left: 0;
+				top: 0;
+			}
+			
+			#list .text {
+				text-align: center;
+				z-index: 2;
+				background-color: navajowhite;
+			}
+			#list .delete {
+				text-align: right;
+				z-index: 1;
+				background-color: red;
+				color: white;
+			}
+		</style>
+
+		<script>
+			window.onload = function() {
+				let oUl = document.querySelector('#list');
+				let aLi = oUl.querySelectorAll('li');
+				
+				for(let i = 0; i < aLi.length; i++) {
+					
+					let oDiv = aLi[i].querySelector('.text');
+					let oDeleteBtn = aLi[i].querySelector('.delete');
+					leftScroll(oDiv);
+					
+					oDeleteBtn.onclick = function() {
+						oUl.removeChild(this.parentNode);
+					}
+				}
+				
+				function leftScroll(obj) {
+					const delWidth = 60;
+					let startX = 0, offsetX = 0;
+					obj.addEventListener('touchstart', start, false);
+					obj.addEventListener('touchmove', move, false);
+					obj.addEventListener('touchend', end, false);
+					
+					function start(ev) {
+						console.log('touchstart', ev);
+						startX = ev.targetTouches[0].pageX;
+					}
+					
+					function move(ev) {
+						console.log('touchmove', ev);
+						let nowPointX = ev.targetTouches[0].pageX;
+						offsetX = nowPointX - startX; // 水平方向偏移
+						if (offsetX < 0) { // 向左滑动
+							if (Math.abs(offsetX) >= delWidth) {
+								obj.style.left = -delWidth + 'px';
+							} else {
+								obj.style.left = offsetX + 'px';
+							}								
+						} else { // 向右滑动
+							obj.style.left = 0 + 'px';
+						}
+					}
+					
+					function end(ev) {
+						console.log('touchend', ev);
+						if (offsetX < 0 && Math.abs(offsetX) < delWidth-10) {
+							obj.style.left = 0 + 'px';
+						}
+					}
+					
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<ul id="list">
+				<li>
+					<div class="text">第一行</div>
+					<div class="delete">删除</div>
+				</li>
+				<li>
+					<div class="text">第二行</div>
+					<div class="delete">删除</div>
+				</li>
+				<li>
+					<div class="text">第三行</div>
+					<div class="delete">删除</div>
+				</li>
+				<li>
+					<div class="text">第四行</div>
+					<div class="delete">删除</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+</html>

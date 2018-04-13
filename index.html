@@ -6,79 +6,96 @@
 		<title></title>
 		<link rel="stylesheet" href="assets/css/reset.css" />
 		<link rel="stylesheet" href="assets/css/index.css" />
-		
 		<script src="assets/js/index.js"></script>
 		<script>
 			window.onload = function() {
-				var oSwipe = document.querySelector('#swipe_wrap');
-				var oUl = oSwipe.querySelector('.swipe');
-				var aLi = oUl.getElementsByTagName('li');
-				var singleWidth = aLi[0].offsetWidth;
-				oUl.style.width = aLi.length * singleWidth + 'px';
+				var oSwipe = document.querySelector('#banner_wrap');
+				var oUl = oSwipe.querySelector('#banner');
+				var w = document.documentElement.clientWidth;
+				
+				var len = oUl.children.length;
+				oUl.style.width = len * w + 'px';
 				
 				var timer = null;
-				
+				timer = setInterval(auto, 3000);
+				function auto() {
+					if (Math.abs(oUl.offsetLeft) === (len-1) * w) {
+						oUl.style.left = 0 + 'px';
+					} else {
+						oUl.style.left = oUl.offsetLeft - w + 'px';
+					}
+				}
 			}
 		</script>
 	</head>
 	<body>
-		<div>
-			<header id="header">
-				魅力女人
-			</header>
-			<div id="swipe_wrap">
-				<ul class="swipe">
-					<li>
-						<img src="assets/img/swipe1.jpg"  alt="1"/>
-					</li>
-					<li>
-						<img src="assets/img/swipe1.jpg"  alt="1"/>
-					</li>
-					<li>
-						<img src="assets/img/swipe1.jpg"  alt="1"/>
-					</li>
-				</ul>
-			</div>
-			
-			<div>
+		<div id="container">
+			<header id="header">魅力女人</header>
+			<section id="content">
+				<div id="banner_wrap">
+					<ul id="banner">
+						<li>
+							<img src="assets/img/swipe1.jpg"  alt="1"/>
+						</li>
+						<li>
+							<img src="assets/img/swipe1.jpg"  alt="1"/>
+						</li>
+						<li>
+							<img src="assets/img/swipe1.jpg"  alt="1"/>
+						</li>
+					</ul>
+					<div id="dot">
+						<span class="active"></span>
+						<span></span>
+						<span></span>
+					</div>
+					<div id="ad_msg"><p>nihao</p></div>
+				</div>
 				<ul id="list">
 					<li>
 						<img src="assets/img/list_pic.jpg" />
-						<div class="content_des">
+						<div class="list_item_right">
 							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
 							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
 						</div>
 					</li>
 					<li>
 						<img src="assets/img/list_pic.jpg" />
-						<div class="content_des">
+						<div class="list_item_right">
 							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
 							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
 						</div>
 					</li>
 					<li>
 						<img src="assets/img/list_pic.jpg" />
-						<div class="content_des">
+						<div class="list_item_right">
 							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
 							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
 						</div>
 					</li>
 					<li>
 						<img src="assets/img/list_pic.jpg" />
-						<div class="content_des">
+						<div class="list_item_right">
 							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
 							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
 						</div>
 					</li>
 					<li>
 						<img src="assets/img/list_pic.jpg" />
-						<div class="content_des">
+						<div class="list_item_right">
+							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
+							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
+						</div>
+					</li>
+					<li>
+						<img src="assets/img/list_pic.jpg" />
+						<div class="list_item_right">
 							<span class="big_title">美丽的极致</span><span class="small_title">魅力女人： 杨澜</span>
 							<p>美丽的极致是忘却自己的一刻，这时的你不仅是最自然的，因为你不需要取悦任何人</p>
 						</div>
 					</li>
 				</ul>
-			</div>
+			</section>
 		</div>
 	</body>
 </html>

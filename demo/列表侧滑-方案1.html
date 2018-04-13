@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title>移动端滑动删除之一层布局</title>
+		<style>
+			body, ul, p {
+				padding: 0;
+				margin: 0;
+			}
+			
+			#wrap {
+				width: 300px;
+				margin: 0 auto;
+			}
+			
+			ul li {
+				width: 300px;
+				height: 60px;
+				background-color: antiquewhite;
+				list-style: none;
+				margin-bottom: 5px;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.item_wrap{
+				width: 360px;
+				height: 60px;
+				position: absolute;
+				left: 0;
+			}
+			
+			.item_wrap p {
+				width: 300px;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				float: left;
+			}
+			
+			.item_wrap div {
+				width: 60px;
+				height: 60px;
+				line-height: 60px;
+				background-color: azure;
+				color: white;
+				text-align: center;
+				float: left;
+			}
+			
+		</style>
+
+		<script>
+			window.onload = function() {
+				let oUl = document.querySelector('ul');
+				let aLi = oUl.querySelectorAll('li');
+				
+				for(let i = 0; i < aLi.length; i++) {
+					let oDiv = aLi[i].querySelector('div');
+					let oDeleteBtn = oDiv.querySelector('div');
+					leftScroll(oDiv, oDeleteBtn);
+					
+					oDeleteBtn.onclick = function() {
+						oUl.removeChild(this.parentNode.parentNode);
+					}
+				}
+				
+				function leftScroll(obj, deleteObj) {
+					const delWidth = deleteObj.offsetWidth;
+					let startX = 0, offsetX = 0;
+					obj.addEventListener('touchstart', start, false);
+					obj.addEventListener('touchmove', move, false);
+					obj.addEventListener('touchend', end, false);
+					
+					function start(ev) {
+						console.log('touchstart', ev);
+						startX = ev.targetTouches[0].pageX;
+					}
+					
+					function move(ev) {
+						console.log('touchmove', ev);
+						let nowPointX = ev.targetTouches[0].pageX;
+						offsetX = nowPointX - startX; // 水平方向偏移
+						if (offsetX < 0) { // 向左滑动
+							if (Math.abs(offsetX) >= delWidth) {
+								obj.style.left = -delWidth + 'px';
+							} else {
+								obj.style.left = offsetX + 'px';
+							}								
+						} else { // 向右滑动
+							obj.style.left = 0 + 'px';
+						}
+					}
+					
+					function end(ev) {
+						console.log('touchend', ev);
+						if (offsetX < 0 && Math.abs(offsetX) < delWidth-10) {
+							obj.style.left = 0 + 'px';
+						}
+					}
+					
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<ul>
+				<li>
+					<div class="item_wrap">
+						<p>第一行</p>
+						<div>
+							<img src="../assets/img/icon_delete.png" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="item_wrap">
+						<p>第二行</p>
+						<div>
+							<img src="../assets/img/icon_delete.png" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="item_wrap">
+						<p>第三行</p>
+						<div>
+							<img src="../assets/img/icon_delete.png" />
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="item_wrap">
+						<p>第四行</p>
+						<div class="deleteBtn">
+							<img src="../assets/img/icon_delete.png" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+</html>

@@ -1,64 +1,139 @@
-
-#header {
-	background: #d44580;
-	height: 50px;
-	text-align: center;
-	color: white;
-	font-size: 16px;
-	line-height: 50px;
-}
-
-#swipe_wrap {
+body, html {
 	width: 100%;
-	height: 180px;
-	border: 1px solid red;
+	height: 100%;
+	overflow: hidden;
 	position: relative;
 }
 
-.swipe {
+#container {
+	width: 100%;
 	height: 100%;
+}
+
+#header {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #d44580;
+	color: white;
+	font-size: 16px;
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+#content {
+	height: 100%;
+	overflow: auto;
+	position: absolute;
+	top: 50px;
+	left: 0;
+}
+
+/*banner的开始*/
+#banner_wrap {
+	width: 100%;
+	height: 180px;
 	overflow: hidden;
+	position: relative;
+	left: 0;
+}
+
+#banner {
+	width: 100%;
+	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0px;
 }
 
-.swipe li {
-	width: 100%;
+#banner li {
+	width: 100vw;
+	height: 180px;
 	background: aliceblue;
-	height: 100%;
 	float: left;
 }
 
+#banner li img {
+	width: 100%;
+	height: 180px;
+}
+
+#dot {
+	width: 100%;
+	height: 20px;
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 20px;
+}
+
+#dot span {
+	width: 5px;
+	height: 5px;
+	border-radius: 5px;
+	background: whitesmoke;
+	display: inline-block;
+}
+
+#dot .active {
+	background: #d44580;
+}
+
+#ad_msg {
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	background: #000000;
+	opacity: 0.6;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#ad_msg p{
+	color: white;
+	font-size: 12px;
+	padding-left: 10px;
+}
+
+/*banner的结束*/
+
+/*列表的开始*/
 #list {
-	
+	width: 100%;
+	height: 100%;
 }
 
 #list li {
 	padding: 10px;
 	display: flex;
+	align-items: center;
+	border-bottom: 1px solid whitesmoke;
+	box-sizing: border-box;
 }
 
 #list li:hover {
-	background: aquamarine;
+	background: whitesmoke;
 }
 
 #list li img {
 	display: block;
-	width: 140px;
-	height: 80px;
+	width: 100px;
+	height: 60px;
 }
 
-#list li .content_des {
+#list .list_item_right {
 	padding: 0 15px;
 }
 
-#list li .content_des .big_title {
-	font-size: 20px;
+#list .big_title {
+	font-size: 18px;
 	color: #000000;
 }
 
-#list li .content_des .small_title {
+#list .small_title {
 	font-size: 14px;
 	color: #a3a3a3;
 	position: absolute;
@@ -66,7 +141,8 @@
 	margin-right: 15px;
 }
 
-#list li .content_des p {
+#list .list_item_right p {
 	color: #bdbdbd;
 	font-size: 12px;
 }
+/*列表的结束*/
