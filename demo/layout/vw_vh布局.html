@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title></title>
+		<style>
+			body, ul {
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				list-style: none;
+			}
+			body, html {
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			header, footer {
+				width: 100vw;
+				height: 15vw;
+				background-color: rgba(255, 0, 255, 0.8);
+				color: white;
+				font-size: 4vw;
+				text-align: center;
+				line-height: 15vw;
+				position: absolute;
+			}
+			header {
+				left: 0;
+				top: 0;
+			}
+			
+			footer {
+				bottom: 0;
+				left: 0;
+			}
+			
+			section {
+				width: 100vw;
+				height: 100%;
+				overflow: auto;
+				position: absolute;
+				top: 15vw;
+				bottom: 15vw;
+			}
+			#list {
+				background: aliceblue;
+				padding-bottom: 15vw;
+			}
+			
+			#list li {
+				height: 10vw;
+				line-height: 10vw;
+				text-align: center;		
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oUl = document.querySelector('#list');
+				var content = '';
+				for (var i=0; i<40; i++) {
+					content += '<li>列表'+ i+'</li>';
+				}
+				oUl.innerHTML = content;
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div>
+			<header>头部</header>
+			<section>
+				<ul id="list">
+				</ul>
+			</section>
+			<footer>
+				尾部
+			</footer>
+		</div>
+	</body>
+</html>

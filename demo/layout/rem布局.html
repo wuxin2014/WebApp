@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title></title>
+		<style>
+			body, ul {
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				list-style: none;
+			}
+			body, html {
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			body {
+				font-size: 12px;
+			}
+			
+			header, footer {
+				width: 10rem;
+				height: 1.5rem;
+				background-color: rgba(255, 0, 255, 0.8);
+				color: white;
+				font-size: .5rem;
+				text-align: center;
+				line-height: 1.5rem;
+				position: absolute;
+			}
+			header {
+				left: 0;
+				top: 0;
+			}
+			
+			footer {
+				bottom: 0;
+				left: 0;
+			}
+			
+			section {
+				width: 10rem;
+				height: 100%;
+				overflow: auto;
+				position: absolute;
+				top: 1.5rem;
+				bottom: 1.5rem;
+			}
+			#list {
+				background: aliceblue;
+				padding-bottom: 1.5rem;
+			}
+			
+			#list li {
+				height: 1rem;
+				line-height: 1rem;
+				text-align: center;		
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oUl = document.querySelector('#list');
+				var content = '';
+				for (var i=0; i<40; i++) {
+					content += '<li>列表'+ i+'</li>';
+				}
+				oUl.innerHTML = content;
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div>
+			<header>头部</header>
+			<section>
+				<ul id="list">
+				</ul>
+			</section>
+			<footer>
+				尾部
+			</footer>
+		</div>
+	</body>
+	<script>
+		/**
+		 * 以360为基准
+		 * 1.获取当前屏幕的大小document.documentElement.clientWidth
+		 * 2.设定html的fontSize,即rem
+		 * 3.如何在屏幕大小变化时，重新计算
+		 */
+		(function(win, doc) {
+			var fresh = function() {
+				var html = doc.documentElement;
+				var screenW = html.clientWidth;
+				html.style.fontSize = screenW/10 + 'px';
+			}
+			
+			if (doc.readyState === 'complete') {
+				fresh();
+			} else {
+				doc.addEventListener('DOMContentLoaded', fresh, false);
+			}
+			
+			win.addEventListener('resize', fresh, false);
+		})(window, document);
+		
+	</script>
+</html>
