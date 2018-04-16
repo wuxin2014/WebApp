@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function() {
+				var oDiv = document.querySelector('div');
+				alert(oDiv.name); // undefined
+				
+				alert(oDiv.dataset.name); // nihao
+				
+				alert(oDiv.dataset.nameAge); // nihao10
+			}
+		</script>
+	</head>
+	<body>
+		<div name='nihao' data-name="nihao" data-name-age='nihao10'></div>
+	</body>
+</html>

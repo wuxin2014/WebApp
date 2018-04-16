@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title></title>
+		<style>
+			body, ul {
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				list-style: none;
+			}
+			body, html {
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			body {
+				font-size: 12px;
+			}
+			header {
+				width: 10rem;
+				height: 1.5rem;
+				background-color: red;
+				color: white;
+				font-size: .5rem;
+				text-align: center;
+				line-height: 1.5rem;
+			}
+			#content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 1.5rem;
+				background: aliceblue;
+				overflow: auto;
+				height-: 100%;
+			}
+			#list li {
+				height: 1rem;
+				line-height: 1rem;
+				text-align: center;		
+			}
+		</style>
+		<script>
+			function createLi() {
+				var oUl = document.querySelector('#list');
+				var li = '';
+				for (var i=0; i<40;i++){
+					li += '<li>列表'+ i +'</li>';
+				}
+				oUl.innerHTML = li;
+			}
+			
+			window.onload = function() {
+				createLi();
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div>
+			<header>头部</header>
+			<div id="content">
+				<ul id="list">
+				
+				</ul>
+			</div>
+			
+		</div>
+	</body>
+	<script>
+		/**
+		 * 以360为基准
+		 * 1.获取当前屏幕的大小document.documentElement.clientWidth
+		 * 2.设定html的fontSize,即rem
+		 * 3.如何在屏幕大小变化时，重新计算
+		 */
+		(function(win, doc) {
+			var fresh = function() {
+				var html = doc.documentElement;
+				var screenW = html.clientWidth;
+				html.style.fontSize = screenW/10 + 'px';
+			}
+			
+			if (doc.readyState === 'complete') {
+				fresh();
+			} else {
+				doc.addEventListener('DOMContentLoaded', fresh, false);
+			}
+			
+			win.addEventListener('resize', fresh, false);
+		})(window, document);
+		
+	</script>
+</html>

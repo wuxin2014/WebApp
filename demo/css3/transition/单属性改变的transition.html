@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title></title>
+		<style>
+			#wrap {
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+			}
+			
+			/*已知父级宽高 和 自己的宽高 的水平垂直居中方法*/
+			#wrap div {
+				width: 100px;
+				height: 100px;
+				background: #FFA500;
+				margin-top: 50px;
+				margin-left: 50px;
+				transition: 1s;
+			}
+			
+			#wrap:hover div {
+				background-color: #9ACD32;
+			}
+			
+			
+			/*transition的属性值有
+			 * transition-property: 规定设置过渡效果的 CSS 属性的名称。
+			 * transition-duration: 规定完成过渡效果需要多少秒或毫秒。
+			 * transition-timing-function: 规定速度效果的速度曲线。
+			 * transition-delay: 定义过渡效果何时开始。
+			 * 简写：transition: property duration timing-function delay;
+			 * 如：transition：all 0 ease 0 默认
+			 * transition: width 1s 2s => 1s代表多少时间完成过渡, 2s代表延迟执行时间, width代表宽度
+			 * transition: width 1s 2s, height 1s 0s 
+			*/
+			
+		</style>
+	</head>
+	<body>
+		<div id="wrap">
+			<div></div>
+		</div>
+	</body>
+</html>

@@ -15,6 +15,7 @@
 			body, html {
 				height: 100%;
 				overflow: hidden;
+				position: relative;
 			}
 			body {
 				font-size: 12px;
@@ -28,12 +29,14 @@
 				text-align: center;
 				line-height: 1.5rem;
 			}
-			
-			#list {
-				height: 100%;
+			#content {
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 1.5rem;
 				background: aliceblue;
-				margin-top: .2rem;
-				overflow: auto;
+				overflow: hidden;
 			}
 			
 			#list li {
@@ -42,50 +45,50 @@
 				text-align: center;		
 			}
 		</style>
-		
+		<script>
+			function createLi(parentEle) {
+				var li = '';
+				for (var i=0; i<40;i++){
+					li += '<li>列表'+ i +'</li>';
+				}
+				parentEle.innerHTML = li;
+			}
+			
+			window.onload = function() {
+				// 阻止浏览器默认事件
+				document.addEventListener('touchstart', function() {
+					document.preventDefault();
+				});
+				var oUl = document.querySelector('#list');
+				var oContent = document.querySelector('#content'); 
+				createLi(oUl);
+				
+				var startPointY = 0;
+				
+				oContent.addEventListener('touchstart', start, false);
+				oContent.addEventListener('touchmove', move, false);
+				
+				function start(ev) {
+					startPointY = ev.changedTouches[0].pointY;
+				}
+				
+				function move(ev) {
+					
+				}
+				
+			}
+		</script>
 		
 	</head>
 	<body>
 		<div>
 			<header>头部</header>
-			<ul id="list">
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表一</li>
-				<li>列表d</li>
-			</ul>
+			<div id="content">
+				<ul id="list">
+				
+				</ul>
+			</div>
+			
 		</div>
 	</body>
 	<script>

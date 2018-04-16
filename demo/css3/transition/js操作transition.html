@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+		<title></title>
+		<style>
+			#wrap {
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+			}
+			
+			/*已知父级宽高 和 自己的宽高 的水平垂直居中方法*/
+			#wrap div {
+				width: 100px;
+				height: 100px;
+				background: #FFA500;
+				margin-top: 50px;
+				margin-left: 50px;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var oWrap = document.querySelector('#wrap');
+				var oDiv = oWrap.querySelector('div');
+				
+				oDiv.onmouseover = function() {
+					oDiv.style.width = '120px';
+					oDiv.style.height = '120px';
+					
+					// oDiv.style.transition = '1s';
+					
+					oDiv.style.transition = 'width 1s, height 2s 2s';
+				}
+				
+				oDiv.onmouseout = function() {
+					oDiv.style.width = '100px';
+					oDiv.style.height = '100px';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div></div>
+		</div>
+	</body>
+</html>

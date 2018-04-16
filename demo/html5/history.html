@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function() {
+				var btn = document.querySelector('button');
+				var oDiv = document.querySelector('div');
+				var num = 1;
+				var json = {};
+				
+				btn.onclick = function() {
+					json.num = num;
+					oDiv.innerHTML = '随机数:'+num;
+					history.pushState(json, '', '');
+					num++;
+				}
+				
+				
+				// 注意时window的onpopstate事件， 而不是document的onpopstate事件
+				window.onpopstate = function(ev) {
+					console.log(ev.state);
+					oDiv.innerHTML = '随机数:'+ev.state.num;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button>动态生成随机数</button>
+		<div>
+			
+		</div>
+	</body>
+</html>
