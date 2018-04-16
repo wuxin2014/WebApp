@@ -64,6 +64,8 @@
 				createLi(oUl);
 				
 				var startPointY = 0;
+				var startEle = 0;
+				var translateY = 0;
 				
 				oContent.addEventListener('touchstart', start, false);
 				oContent.addEventListener('touchmove', move, false);
@@ -73,6 +75,7 @@
 				}
 				
 				function move(ev) {
+					var dis = ev.changedTouches[0].pointY - startPointY;
 					
 				}
 				

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			window.onload = function() {
+				var oCanvas = document.querySelector('#canvas');
+				var oGc = oCanvas.getContext('2d');
+				
+				oGc.fillStyle = 'white';
+				oGc.font="60px Georgia";
+				oGc.textBaseline="top";
+				oGc.fillText('nihao', 0, 0);
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="canvas" width='600px'; height='600px' style="background: antiquewhite;"></canvas>
+	</body>
+</html>

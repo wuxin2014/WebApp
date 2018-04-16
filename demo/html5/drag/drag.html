@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body, ul{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			
+			#container {
+				text-align: center;
+				border: 1px solid rosybrown;
+			}
+			
+			#list li {
+				width: 180px;
+				height: 40px;
+				line-height: 40px;
+				background: #FA8072;
+				margin-top: 10px;
+				text-align: center;
+			}
+			
+			#target {
+				width: 800px;
+				height: 400px;
+				border: 1px solid rosybrown;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				var aLi = document.querySelectorAll('li');
+				var oTarget = document.querySelector('#target');
+				
+				for (var i=0; i<aLi.length;i++) {
+					aLi[i].ondragstart = function() {
+						console.log('ondragstart');
+						this.style.background = 'red';
+					}
+					
+					aLi[i].ondrag = function() {
+						console.log('ondrag');
+						this.style.background = 'blue';
+					}
+					
+					aLi[i].ondragend = function() {
+						console.log('ondragend');
+						this.style.background = 'orange';
+					}
+				}
+				
+				oTarget.ondragenter = function() {
+					console.log('ondragenter');
+					this.style.background = 'orange';
+				}
+				
+				oTarget.ondragleave = function() {
+					console.log('ondragleave');
+					this.style.background = 'rosybrown';
+				}
+				
+				oTarget.ondragover = function() {
+					// console.log('ondragover');
+					this.style.background = 'red';
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">
+			<ul id="list">
+				<li draggable="true">列表1</li>
+				<li draggable="true">列表2</li>
+				<li draggable="true">列表3</li>
+				<li draggable="true">列表4</li>
+			</ul>
+			<div id="target">
+				拖拽内容区域
+			</div>
+		</div>
+	</body>
+</html>
