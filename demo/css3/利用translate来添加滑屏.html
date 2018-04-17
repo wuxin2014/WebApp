@@ -66,8 +66,10 @@
 			window.onload = function() {
 				var oUl = document.querySelector('#list');
 				createLi(oUl);
+				var oHeader = document.querySelector('header');
 				
-				var oUlHeight = oUl.offsetHeight;
+				var headerHeight = oHeader.offsetHeight;
+				var ulHeight = oUl.offsetHeight;
 				var startPointY = 0; // 触屏的起始点
 				var startEle = 0; // 元素
 				var elTranslateY = 0; // 元素偏移量
@@ -96,21 +98,24 @@
 					console.log('end:', ev);
 					var lastPointY = ev.changedTouches[0].pageY;
 					var offsetDisY = lastPointY - startPointY;
+					var clientHeight = document.documentElement.clientHeight;
+					var contentHeight = clientHeight - headerHeight;
 					
 					var t = offsetDisY + startEle;
 					
 					console.log('end-startEle:', startEle);
 					console.log('end-offsetDisY:', offsetDisY);
-					console.log('end-oUlHeight:', oUlHeight);
-					
+					console.log('end-ulHeight:', ulHeight);
 					console.log('end-t:',  t);
 					
-					if (offsetDisY > 0 && offsetDisY > 20) { // 下拉
+					if (offsetDisY > 0 && offsetDisY > 20) { // 下拉临界点处理
 						elTranslateY = 0;
 						oUl.style.transition = "1s";
 						oUl.style.WebkitTransform = oUl.style.transform = "translateY(0px)";	
-					} else if (offsetDisY < 0 && oUlHeight - Math.abs(t) > 20) {
-						// oUl.style.WebkitTransform = oUl.style.transform = "translateY("+ t +"px)";	
+					} else if (offsetDisY < 0 && Math.abs(t) + contentHeight - ulHeight > 20) { // 上拉临界点处理
+						elTranslateY = -(ulHeight - contentHeight);
+						oUl.style.transition = "1s";
+						oUl.style.WebkitTransform = oUl.style.transform = "translateY("+ elTranslateY +"px)";	
 					}
 				}
 				
