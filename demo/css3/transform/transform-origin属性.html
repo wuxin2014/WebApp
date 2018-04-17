@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 		<title></title>
 		<style>
 			#wrap {
@@ -34,12 +35,12 @@
 			
 			#wrap:hover div:nth-of-type(3) {
 				background: darkolivegreen;
-				transform-origin: right top;
+				transform-origin: left bottom;
 				transform: rotate(30deg);
 			}
 			
 			#wrap:hover div:nth-of-type(4) {
-				transform-origin: left bottom;
+				transform-origin: right top;
 				transform: rotate(30deg);
 			}
 			
@@ -54,11 +55,11 @@
 	</head>
 	<body>
 		<div id="wrap">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+			<div>center center</div>
+			<div>left top</div>
+			<div>left bottom</div>
+			<div>right top</div>
+			<div>right bottom</div>
 		</div>
 	</body>
 </html>

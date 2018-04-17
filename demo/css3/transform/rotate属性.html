@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 		<title></title>
 		<style>
 			#wrap {
@@ -14,30 +15,39 @@
 				width: 100px;
 				height: 100px;
 				background: #FFA500;
-				transition: 1s;
+				transition: 3s;
 				margin-top: 30px;
+				color: white;
+				text-align: center;
+				line-height: 100px;
 			}
 			
 			#wrap:hover div:nth-of-type(1) {
-				transform: rotateX(30deg);
+				transform: rotateX(360deg);
 			}
 			
 			#wrap:hover div:nth-of-type(2) {
-				transform: rotateY(30deg);
+				transform: rotateY(360deg);
 			}
 			
 			#wrap:hover div:nth-of-type(3) {
+				transform: rotateZ(360deg);
+			}
+			
+			#wrap:hover div:nth-of-type(4) {
 				transform: rotate(30deg);
 				-webkit-transform: rotate(30deg);
 			}
+			
 		</style>
 		
 	</head>
 	<body>
 		<div id="wrap">
-			<div></div>
-			<div></div>
-			<div></div>
+			<div>rotateX</div>
+			<div>rotateY</div>
+			<div>rotateZ</div>
+			<div>rotate</div>
 		</div>
 	</body>
 </html>

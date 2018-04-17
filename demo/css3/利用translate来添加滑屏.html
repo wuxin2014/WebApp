@@ -39,6 +39,12 @@
 				overflow: hidden;
 			}
 			
+			#list {
+				width: 100%;
+				box-sizing: border-box;
+				border: 1px solid red;
+			}
+			
 			#list li {
 				height: 1rem;
 				line-height: 1rem;
@@ -46,6 +52,10 @@
 			}
 		</style>
 		<script>
+			// 阻止浏览器默认事件
+			document.addEventListener('touchstart', function(ev) {
+				ev.preventDefault();
+			});
 			function createLi(parentEle) {
 				var li = '';
 				for (var i=0; i<40;i++){
@@ -55,28 +65,40 @@
 			}
 			
 			window.onload = function() {
-				// 阻止浏览器默认事件
-				document.addEventListener('touchstart', function() {
-					document.preventDefault();
-				});
 				var oUl = document.querySelector('#list');
-				var oContent = document.querySelector('#content'); 
 				createLi(oUl);
 				
-				var startPointY = 0;
-				var startEle = 0;
-				var translateY = 0;
+				var startPointY = 0; // 触屏的起始点
+				var startEle = 0; // 元素
+				var elTranslateY = 0; // 元素偏移量
 				
-				oContent.addEventListener('touchstart', start, false);
-				oContent.addEventListener('touchmove', move, false);
+				oUl.addEventListener('touchstart', start, false);
+				oUl.addEventListener('touchmove', move, false);
+				oUl.addEventListener('touchend', end, false);
 				
 				function start(ev) {
-					startPointY = ev.changedTouches[0].pointY;
+					startPointY = ev.changedTouches[0].pageY;
+					startEle = elTranslateY;
+					console.log('start-startPointY:'+startPointY + 'startEle:' + startEle);
 				}
 				
 				function move(ev) {
-					var dis = ev.changedTouches[0].pointY - startPointY;
+					var nowPointY = ev.changedTouches[0].pageY;
+					var offsetDisY = nowPointY - startPointY; // 移动距离
+					console.log('move-offsetDisY:'+offsetDisY + 'nowPointY:' + nowPointY);
+					elTranslateY = offsetDisY + startEle;
+					oUl.style.WebkitTransform = oUl.style.transform = "translateY("+ elTranslateY +"px)";
+				}
+				
+				function end(ev) {
+					var lastPointY = ev.changedTouches[0].pageY;
+					var offsetDisY = lastPointY - startPointY;
+					var offsetY = offsetDisY + startEle;
 					
+					if (Math.abs(offsetY) > 20) {
+						elTranslateY = 0;
+						oUl.style.WebkitTransform = oUl.style.transform = "translateY("+ (-offsetY) +"px)";	
+					}
 				}
 				
 			}

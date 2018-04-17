@@ -2,37 +2,18 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 		<title></title>
 		<style>
-			* {
-				padding: 0;
-				margin: 0;
-			}
-			#container {
-				width: 100%;
-				height: 100%;
-				border: 1px solid rosybrown;
-			}
-			
-			.one {
-				width: 100px;
-				height: 100px;
-				background-color: antiquewhite;
-			}
-			
-			.two {
-				width: 200px;
-				height: 200px;
-				background-color: salmon;
+			div {
+				width: 300px;
+				height: 300px;
+				background: darkmagenta;
 			}
 		</style>
 		<script>
-			/**
-			 * https://blog.csdn.net/u012468376/article/details/72808761
-			 * http://www.cnblogs.com/imwtr/category/626448.html
-			 * https://blog.csdn.net/zhy13087344578/article/details/79078475
-			 * 
+			/*
+			 * Touch事件有
 			 * touchstart: //手指放到屏幕上时触发
 			 * touchmove: //手指在屏幕上滑动式触发
 			 * touchend: //手指离开屏幕时触发
@@ -42,6 +23,10 @@
 			 * touches: //当前屏幕上所有手指的列表
 			 * targetTouches: //当前dom元素上手指的列表，尽量使用这个代替touches
 			 * changedTouches: //涉及当前事件的手指的列表，尽量使用这个代替touches
+			 * 注意：
+			 * changedTouches/touches/targetTouches都是手指信息的集合,
+			 * touches/targetTouches获取到值的必要条件只有手指还在屏幕上才可以获取，
+			 * 所以在touchend事件中如果想获取手指离开的瞬间坐标只能使用changedTouches获取
 			 * 
 			 * touch对象里包含着触摸信息
 			 * pageX //相对于页面的 X 坐标 
@@ -65,32 +50,26 @@
 			 * 
 			 */
 			window.onload = function() {
-				var oWrap = document.getElementById('container');
-				var one = document.querySelector('.one');
-				var two = document.querySelector('.two');
+				var oDiv = document.querySelector('div');
+				oDiv.addEventListener('touchstart', start, false);
+				oDiv.addEventListener('touchmove', move, false);
+				oDiv.addEventListener('touchend', end, false);
+				function start(ev) {
+					console.log('start:', ev);
+				}
 				
-				addEvent(one, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap', false);
-			
-				addEvent(two, 'tap click touchstart touchmove touchend touchcancel swipe swipeLeft swipeRight swipeUp swipeDown longTap singleTap doubleTap', true);
+				function move(ev) {
+					console.log('move:', ev);
+				}
+				
+				function end(ev) {
+					console.log('end:', ev);
+				}
 			}
 			
-			function addEvent(elem, type, showAll) {
-				var type = type.split(' ');
-				alert(type.length);
-				type.forEach(function(item) {
-					elem.addEventListener(item, function(ev) {
-						console.log(showAll ? ev : ev.type);
-					});
-				});
-			}
 		</script>
 	</head>
 	<body>
-		<div id="container">
-			<div class="one">
-				
-			</div>
-			<div class="two"></div>
-		</div>
+		<div></div>
 	</body>
 </html>

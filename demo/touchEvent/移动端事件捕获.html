@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#container {
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				border: 1px solid rosybrown;
+			}
+			
+			.one {
+				width: 100px;
+				height: 100px;
+				background-color: antiquewhite;
+				padding: 60px;
+			}
+			
+			.two {
+				width: 100px;
+				height: 100px;
+				background-color: salmon;
+			}
+		</style>
+		<script>
+			/**
+			 * https://blog.csdn.net/u012468376/article/details/72808761
+			 * http://www.cnblogs.com/imwtr/category/626448.html
+			 * https://blog.csdn.net/zhy13087344578/article/details/79078475
+			 * 
+			 */
+			window.onload = function() {
+				var oWrap = document.getElementById('container');
+				var one = document.querySelector('.one');
+				var two = document.querySelector('.two');
+				
+				// 事件捕获
+				addEvent(oWrap, 'click touchstart touchmove touchend touchcancel', true);
+				
+				addEvent(one, 'click touchstart touchmove touchend touchcancel', false);
+			
+				addEvent(two, 'click touchstart touchmove touchend touchcancel', true);
+			}
+			
+			function addEvent(elem, eventName, showAll) {
+				var eventName = eventName.split(' ');
+				eventName.forEach(function(item) {
+					elem.addEventListener(item, function(ev) {
+						console.log(elem.className, ev.type);
+					}, showAll);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container" class="container">
+			<div class="one">
+				<div class="two"></div>
+			</div>
+		</div>
+	</body>
+</html>
