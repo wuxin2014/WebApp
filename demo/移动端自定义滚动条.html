@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>移动端自定义滚动条</title>
+		<style>
+			body, ul {
+				padding: 0;
+				margin: 0;
+			}
+			
+			body, html {
+				height: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			#header {
+				width: 100%;
+				height: 1rem;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background: orangered;
+				text-align: center;
+				color: white;
+				line-height: 1rem;
+				font-size: 0.5rem;
+			}
+			
+			#footer {
+				width: 100%;
+				height: 1rem;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				background: orangered;
+				text-align: center;
+				color: white;
+				line-height: 1rem;
+				font-size: 0.5rem;
+			}
+			
+			#wrap {
+				position: absolute; /*相对定位子元素显示不出来*/
+				left: 0;
+				top: 1rem;
+				bottom: 1rem;
+				right: 0;
+				overflow: hidden;
+			}
+			
+			#list {
+				width: 100%;
+				position: absolute;
+				top: 0;
+			}
+			
+			#list li {
+				font-size: 0.4rem;
+				height: .8rem;
+				line-height: .8rem;
+			}
+			
+			#bar {
+				height: 100%;
+				position: absolute;
+				right: 0;
+				width: .1rem;
+				height: 0.8rem;
+				background: sandybrown;
+				border-radius: 5px;
+				display: none;
+			}
+		</style>
+		<script>
+			(function(win, doc) {
+				var fresh = function() {
+					var html = doc.documentElement;
+					var screenW = html.clientWidth;
+					html.style.fontSize = screenW/10 + 'px';
+				}
+				
+				if (doc.readyState === 'complete') {
+					fresh();
+				} else {
+					doc.addEventListener('DOMContentLoaded', fresh, false);
+				}
+				
+				win.addEventListener('resize', fresh, false);
+			})(window, document);
+			
+			
+			document.addEventListener('touchstart', function(ev) {
+				ev.preventDefault();
+			}, false);
+			
+			function createLi(parentEle) {
+				var li = '';
+				for (var i=0; i<40;i++){
+					li += '<li>列表'+ i +'</li>';
+				}
+				parentEle.innerHTML = li;
+			}
+			
+			window.onload = function() {
+				var oHeader = document.querySelector('#header');
+				var oUl = document.querySelector('#list');
+				var oBar = document.querySelector('#bar');
+				createLi(oUl);
+				
+				var startPointY = 0;
+				var offsetTop = 0;
+				
+				var barHeight = oBar.offsetHeight;
+				var ulHeight = oUl.offsetHeight;
+				var headerHeight = oHeader.offsetHeight;
+				var clientHeight = document.documentElement.clientHeight;
+				var contentHeight = clientHeight - headerHeight * 2;
+				
+				console.log('clientHeight', clientHeight);
+				console.log('contentHeight', contentHeight);
+				console.log('ulHeight', ulHeight);
+				
+				oUl.addEventListener('touchstart', start, false);
+				oUl.addEventListener('touchmove', move, false);
+				oUl.addEventListener('touchend', end, false);
+				
+				function start(ev) {
+					console.log('start:', ev);
+					var touch = ev.changedTouches[0];
+					startPointY = touch.pageY;
+					offsetTop = this.offsetTop;
+				}
+				
+				function move(ev) {
+					console.log('move:', ev);
+					var touch = ev.changedTouches[0];
+					var nowPointY = touch.pageY;
+					var disY = nowPointY - startPointY;
+					
+					if (offsetTop + disY >= 0) {
+						oBar.style.display = 'none';
+					} else {
+						oBar.style.display = 'block';
+					}
+					
+					this.style.top = offsetTop + disY + 'px';
+					oBar.style.top = Math.abs(offsetTop + disY) + 'px';
+				}
+				
+				function end(ev) {
+					var touch = ev.changedTouches[0];
+					var disY = touch.pageY - startPointY;
+					
+					if (disY > 0 && this.offsetTop > 20) {
+						disY = 0;
+						this.style.top = disY + 'px';
+						oBar.style.display = 'none';
+						oBar.style.top = disY + 'px';
+					} else if (Math.abs(offsetTop+disY) + contentHeight >= ulHeight) {
+						this.style.top = contentHeight - ulHeight + 'px';
+						oBar.style.top = contentHeight - barHeight - headerHeight + 'px';
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<header id="header">头部</header>
+		<div id="wrap">
+			<ul id="list">
+				
+			</ul>
+			<div id="bar"></div>
+		</div>
+		<footer id="footer">尾部</footer>
+	</body>
+</html>
