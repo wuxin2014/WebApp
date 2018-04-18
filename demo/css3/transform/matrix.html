@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title></title>
+		<style>
+			div {
+				width: 100px;
+				height: 100px;
+				background: red;
+			}
+		</style>
+		<script>
+			/**
+			 * matrix默认值
+			 * matrix(1, 0, 0, 1, 0, 0);
+			 * matrix(a, b, c, d, e, f);
+			 * 
+			 * matrix平移效果
+			 * x轴平移 = e + x;
+			 * y轴平移 = f + y;
+			 * 
+			 * matrix缩放效果
+			 * 	x轴：
+			 * 		a = a * x;
+			 * 		c = c * x;
+			 * 		e = e * x;
+			 * 
+			 * 	y轴：
+			 * 		b = b * y;
+			 * 		d = d * y;
+			 * 		f = f * y;
+			 * 
+			 * matrix旋转效果
+			 * 
+			 * matrix斜切效果
+			 * 
+			 */
+			window.onload = function() {
+				var oDiv = document.querySelector('div');
+				oDiv.addEventListener('touchend', function() {
+					
+					/*x轴平移*/
+					// oDiv.style.transform = "matrix(1, 0, 0, 1, 100, 0)";
+					/*y轴平移*/
+					// oDiv.style.transform = "matrix(1, 0, 0, 1, 100, 50)";
+					
+					/*缩放效果*/
+					// oDiv.style.transform = "scale(1.5)"; // matrix(1.5, 0, 0, 1.5, 0, 0)
+					
+					/*先平移再缩放*/
+					oDiv.style.transform = "scale(1.5) translateX(100px)"; // 最终结果是： matrix(1.5, 0, 0, 1.5, 150, 0)
+					/**
+					 * 先在x轴平移100px得到：
+					 * matrix(1, 0, 0, 1, 100, 0)
+					 * 再缩放1.5得到
+					 * matrix(1.5, 0, 0, 1.5, 150, 0)
+					 */
+					
+					// oDiv.style.transform = "scale(1.5) translate(100px, 100px)"; // matrix(1.5, 0, 0, 1.5, 150, 150)
+					console.log(getComputedStyle(oDiv, false).transform);
+				}, false);
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

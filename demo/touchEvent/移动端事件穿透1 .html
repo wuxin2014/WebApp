@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<title>事件穿透</title>
+		<style>
+			#div {
+				width: 300px;
+				height: 200px;
+				background: antiquewhite;
+				position: absolute;
+				left: 0;
+				top: 0;
+				opacity: 0.5;
+			}
+		</style>
+		<script>
+			window.onload = function() {
+				/*document.addEventListener('touchstart', function(ev) {
+					ev.preventDefault();
+				}, false);*/
+				
+				var oDiv = document.querySelector('div');
+				
+				// oDiv阻止默认事件
+				oDiv.addEventListener('touchstart', function(ev) {
+					ev.preventDefault();
+				}, false);
+				
+				
+				oDiv.addEventListener('touchend', function() {
+					console.log('touchend');
+					this.style.display = 'none';
+				}, false);
+				
+			}
+		</script>
+	</head>
+
+	<body>
+		<a href="http://www.baidu.com">链接</a>
+		<div id="div">
+		</div>
+	</body>
+
+</html>
