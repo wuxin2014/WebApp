@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
@@ -17,26 +18,25 @@
 				background-color: bisque;
 			}
 		</style>
-		<script>
+
+		<script type="text/javascript">
 			window.onload = function() {
 				var oDiv = document.getElementById('pro');
 				var oBtn = document.getElementById('changePro');
-				var timer;
-				
+				var timer = null;
 				oBtn.onclick = function() {
-				    cancelAnimationFrame(timer);
-				    timer = requestAnimationFrame(function fn() {
-				        if(oDiv.offsetWidth < 200) {
-				            oDiv.style.width = oDiv.offsetWidth + 5 + 'px';
-				            timer = requestAnimationFrame(fn);
-				        } else {
-				            cancelAnimationFrame(timer);
-				        }    
-				    });
+					clearInterval(timer);
+					timer = setInterval(function() {
+						if(oDiv.offsetWidth >= 200) {
+							clearInterval(timer);
+						}
+						oDiv.style.width = oDiv.offsetWidth + 10 + 'px';
+					}, 1000);
 				}
 			}
 		</script>
 	</head>
+
 	<body>
 		<div>
 			<div id="wrap">
@@ -44,5 +44,7 @@
 			</div>
 			<button id='changePro'>改变进度条</button>
 		</div>
+
 	</body>
+
 </html>
