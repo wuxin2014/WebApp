@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>三栏布局之grid</title>
+		<style>
+			body, section, aside{
+				padding: 0;
+				margin: 0;
+			}
+			.wrap{
+				width: 80%;
+				height: 300px;
+				margin: 0 auto;
+				border: 1px solid red;
+				display: grid;
+				grid-template-columns: 200px auto 200px;
+				grid-template-rows: 300px;
+			}
+			
+			#sec {
+				background: hotpink;
+			}
+			
+			#left {
+				background: blue;
+			}
+			
+			#right {
+				background: antiquewhite;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<aside id="left">#left</aside>
+			<section id="sec">#sect</section>
+			<aside id="right">#right</aside>
+		</div>
+	</body>
+</html>
