@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+		<title>两栏都可上下滑动</title>
+		<style>
+			body, ul {
+				padding: 0;
+				margin: 0;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			#container {
+				position: relative;
+				height: 100vh;
+				overflow: hidden;
+			}
+			
+			#content_wrap {
+				width: 100%;
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 40px;
+				display: flex;
+				flex-direction: row;
+			}
+			
+			#menu {
+				width: 100px;
+				height-: 100%;
+				overflow: auto;
+				background-color: darkkhaki;
+				text-align: center;
+			}
+			
+			#menu li {
+				height: 40px;
+			}
+			
+			#content {
+				flex: 1;
+				height-: 100%;
+				overflow: auto;
+				background-color: antiquewhite;
+			}
+			
+			footer {
+				width: 100%;
+				height: 40px;
+				position: absolute;
+				bottom: 0;
+				background-color: darkmagenta;
+				text-align: center;
+				line-height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="content_wrap">
+				<ul id="menu">
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+					<li>菜单一</li>
+				</ul>
+				<ul id="content">
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+					<li>内容</li>
+				</ul>
+			</div>
+			<footer>Footer</footer>
+		</div>
+	</body>
+</html>

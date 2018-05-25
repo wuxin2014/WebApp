@@ -7,14 +7,15 @@
 			window.onload = function() {
 				var oDiv = document.querySelector('div');
 				alert(oDiv.name); // undefined
+				alert(oDiv.getAttribute('name'));
 				
-				alert(oDiv.dataset.name); // nihao
+				alert(oDiv.dataset.name); // nihao1
 				
 				alert(oDiv.dataset.nameAge); // nihao10
 			}
 		</script>
 	</head>
 	<body>
-		<div name='nihao' data-name="nihao" data-name-age='nihao10'></div>
+		<div name='nihao' data-name="nihao1" data-name-age='nihao10'></div>
 	</body>
 </html>

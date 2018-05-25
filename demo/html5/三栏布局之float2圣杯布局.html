@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.middle {
+				float: left;
+				width: 100%;
+				height: 200px;
+				background-color: Aquamarine;
+			}
+			
+			.left {
+				float: left;
+				width: 200px;
+				height: 200px;
+				background-color: Coral;
+				margin-left: -100%;
+			}
+			
+			.right {
+				float: left;
+				width: 300px;
+				height: 400px;
+				background-color: Moccasin;
+				margin-left: -300px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="middle"> 
+				圣杯布局和双飞翼布局都是实现的三栏布局，两边的盒子宽度固定，中间盒子自适应，也就是我们常说的固比固布局。它们实现的效果是一样的，差别在于其实现的思想。
+				圣杯布局的出现是来自于a list part上的一篇文章In Search of the Holy Grail。比起双飞翼布局，它的起源不是源于对页面的形象表达。在西方，圣杯是表达“渴求之物”的意思。而双飞翼布局，源与淘宝的UED。
+				通过缩放页面就可以发现，随着页面的宽度的变化，这三栏布局是中间盒子优先渲染，两边的盒子框子固定不变，即使页面宽度变小，也不影响我们的浏览。 
+				注意：当缩放页面的时候，宽度不能小于700PX，为了安全起见，最好还是给body加一个最小宽度! 
+			</div>
+			<div class="left"> left </div>
+			<div class="right"> right </div>
+		</div>
+	</body>
+
+</html>
